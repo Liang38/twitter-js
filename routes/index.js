@@ -4,7 +4,7 @@ const router = express.Router();
 const tweetBank = require('../tweetBank');
 const bodyParser = require('body-parser')
 
-const urlencodedParser = bodyParser.urlencoded({extended:false})
+// const urlencodedParser = bodyParser.urlencoded({extended:false})
 
 router.get('/', function (req, res) {
   let tweets = tweetBank.list();
@@ -18,7 +18,7 @@ router.get('/user/:name', function(req, res){
     res.render('index', { tweets:tweets, showForm: true } )
 })
 
-router.post('/tweets', urlencodedParser, function(req, res) {
+router.post('/tweets', function(req, res) {
   var name = req.body.name;
   var text = req.body.text;
   tweetBank.add(name, text);
